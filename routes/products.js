@@ -2,20 +2,25 @@ import Router from 'express';
 import productController from '../controllers/productsController';
 import userController from '../controllers/userController';
 import validation from '../middleware/userValidation';
+import auth from '../middleware/auth';
+
+const { checkFirstName, checkLastName, fNameIsEmpty, 
+        checkEmail, checkGender, checkJobRole, 
+        checkDepart } = validation;
 
 const routes = Router();
 
-routes.get('/api/v1/products', productController.getAllProducts);
+routes.get('/api/v1/products', auth, productController.getAllProducts);
 
-routes.post('/api/v1/products', productController.createNewProduct);
+routes.post('/api/v1/products', auth, productController.createNewProduct);
 
-routes.post('/api/v1/auth',
-            validation.checkFirstName, validation.checkLastName, 
-            validation.checkEmail, validation.checkGender, 
-            validation.checkJobRole, validation.checkDepart, 
-            userController.userSignUp);
+routes.post('/api/v1/auth', /*checkFirstName, checkLastName, fNameIsEmpty,
+                            checkEmail, checkGender, checkJobRole, checkDepart,*/ 
+                            userController.userSignUp);
 
-routes.get('/api/v1/products/:id', productController.getProductById);
+routes.post('/api/v1/auth/login', userController.userLogin);                            
+
+routes.get('/api/v1/products/:id', auth, productController.getProductById);
 
 routes.patch('/api/v1/products/:id', productController.updateProduct);
 

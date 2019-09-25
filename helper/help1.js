@@ -3,9 +3,9 @@ import bcrypt from 'bcrypt';
 
 class Helper {
 
-    static getToken(userPayload) {
+    static getToken(email, id) {
 
-        return jwt.sign(userPayload, process.env.SECRET/*, { expiresIn: '1h' }*/);
+        return jwt.sign({email, id}, process.env.SECRET /*, { expiresIn: 60 }*/);
 
     }
 

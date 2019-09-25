@@ -4,12 +4,24 @@ class validations{
     
     static checkFirstName(req, res, next){
         const firstname = req.body.firstname;
-        if (typeof firstname != "string"){
+        if (typeof firstname != "string" && firstname == ""){
             res.status(422).json({
                 status: 422,
                 message: 'firstname is required and must be a string'
             });
         }else{
+            next();
+        }
+    }
+
+    static fNameIsEmpty(req, res, next) {
+        const firstname = req.body.firstname;
+        if (firstname == "") {
+            res.status(422).json({
+                status: 422,
+                message: 'firstname can not be empty'
+            });
+        } else {
             next();
         }
     }
