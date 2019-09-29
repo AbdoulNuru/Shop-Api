@@ -86,8 +86,8 @@ class productController {
         const productId = parseInt(req.params.id, 10);
         for (let product of products){
             if (product.id === productId){
+                console.log(product);
                 products.splice(products.indexOf(product), 1);
-                
                 return res.status(200).json({
                     success: true,
                     message: 'Product deleted successfully'

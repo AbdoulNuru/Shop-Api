@@ -12,7 +12,7 @@ const routes = Router();
 
 routes.get('/api/v1/products', auth, productController.getAllProducts);
 
-routes.post('/api/v1/products', auth, productController.createNewProduct);
+routes.post('/api/v1/products', /*auth,*/ productController.createNewProduct);
 
 routes.post('/api/v1/auth', /*checkFirstName, checkLastName, fNameIsEmpty,
                             checkEmail, checkGender, checkJobRole, checkDepart,*/ 
