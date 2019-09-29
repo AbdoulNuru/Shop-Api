@@ -10,6 +10,11 @@ const { checkFirstName, checkLastName, fNameIsEmpty,
 
 const routes = Router();
 
+routes.get('/', (req, res)=>{
+    res.send({
+        message: "Welcome to Shop-Api"
+    })
+});
 routes.get('/api/v1/products', auth, productController.getAllProducts);
 
 routes.post('/api/v1/products', /*auth,*/ productController.createNewProduct);
