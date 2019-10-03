@@ -15,7 +15,7 @@ routes.get('/', (req, res)=>{
         message: "Welcome to Shop-Api"
     })
 });
-routes.get('/api/v1/products', auth, productController.getAllProducts);
+routes.get('/api/v1/products', /*auth,*/ productController.getAllProducts);
 
 routes.post('/api/v1/products', /*auth,*/ productController.createNewProduct);
 
