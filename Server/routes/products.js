@@ -25,7 +25,7 @@ routes.post('/api/v1/auth', /*checkFirstName, checkLastName, fNameIsEmpty,
 
 routes.post('/api/v1/auth/login', userController.userLogin);                            
 
-routes.get('/api/v1/products/:id', auth, productController.getProductById);
+routes.get('/api/v1/products/:id', /*auth,*/ productController.getProductById);
 
 routes.patch('/api/v1/products/:id', productController.updateProduct);
 
