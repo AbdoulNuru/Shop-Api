@@ -4,8 +4,8 @@ node_js:
 services:
   - postgresql
 before_script:
-  - psql -c "CREATE DATABASE testing_db;" -U postgres
-  - psql -c "CREATE USER Nuru WITH PASSWORD 'Niyigena1';" -U postgres
+  - psql -c "CREATE DATABASE Teamwork_Testing;" -U postgres
+  - psql -c "CREATE USER postgres WITH PASSWORD '';" -U postgres
 script: 
   - npm run test    
 after_success:
