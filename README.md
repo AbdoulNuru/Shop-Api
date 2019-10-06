@@ -1,2 +1,2 @@
-[![Build Status](https://travis-ci.org/AbdoulNuru/Shop-Api.svg?branch=master)](https://travis-ci.org/AbdoulNuru/Shop-Api)
+[![Build Status](https://travis-ci.org/AbdoulNuru/Shop-Api.svg?branch=master)](https://travis-ci.org/AbdoulNuru/Shop-Api) [![Coverage Status](https://coveralls.io/repos/github/AbdoulNuru/Shop-Api/badge.svg?branch=master)](https://coveralls.io/github/AbdoulNuru/Shop-Api?branch=master)
 # Shop-Api
