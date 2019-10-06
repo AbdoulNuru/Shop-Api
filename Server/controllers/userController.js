@@ -13,7 +13,7 @@ class userController{
 
         const add = await db.query(users.createUser, [uuid(), firstname, lastname,email, password, gender, department, address]);     
         if(add.rowCount === 1){
-                return res.status(201).json({
+                return res.status(201).json({ 
                   status: 201,
                   message: "User created successfully",
                   data: firstname, lastname, email, gender,
@@ -39,7 +39,6 @@ class userController{
                 message: 'Email do not exist in our database'
             });
         }
-
         const pass = help1.comparePassword(pas, user.password);
 
         if(pass){
