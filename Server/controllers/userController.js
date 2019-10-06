@@ -1,47 +1,34 @@
-import users from '../db/userSeeds';
+
 import help1 from '../helper/help1';
 import validation from '../middleware/joi';
-
+import db from '../../config/config';
+import uuid from 'uuid/v1';
+import users from '../db/user';
 class userController{
-    static userSignUp(req, res){
-        const user = {
-            userId: users.length + 1,
-            firstname: req.body.firstname,
-            lastname: req.body.lastname,
-            email: req.body.email,
-            password: help1.hashPassword(req.body.password),
-            gender: req.body.gender,
-            jobRole: req.body.jobRole,
-            department: req.body.department,
-            address: req.body.address
-        };
-        let {error} = validation(req.body);
+    static async userSignUp(req, res){
+        const { firstname, lastname, email, 
+                gender, department, address
+        } = req.body;
+        const password = help1.hashPassword(req.body.password);
 
-        if(error){
-            return res.status(422).json({
-                status: 422,
-                error: error.details[0].message.replace(/"/g, '')
-            });
-        }
+        const add = await db.query(users.createUser, [uuid(), firstname, lastname,email, password, gender, department, address]);     
+        if(add.rowCount === 1){
+                return res.status(201).json({
+                  status: 201,
+                  message: "User created successfully",
+                  data: firstname, lastname, email, gender,
+                  department, address,
+                  token: help1.getToken(email)
+                });  
+               }
 
-        const u = users.find(use => use.email === user.email);    
-
-        if(u){
-            res.status(400).json({
-                message: 'the email already exist'
-            });
-        }else{
-            users.push(user);
-            res.status(201).json({
-                status: 201,
-                message: 'User created successfully',
-                data: user,
-                token: help1.getToken(user.userId, user.email)
-            });
-        }   
+            res.status(409).json({
+                status: 409,
+                message: 'User exist'
+            });      
     }
 
-    static userLogin(req, res){
+    /*static userLogin(req, res){
         const email = req.body.email;
         const pas = req.body.password;
         const user = users.find(user => user.email === email);
@@ -67,7 +54,7 @@ class userController{
                 message: 'wrong password'
             });
         }
-    }
+    }*/
 }
 
 export default userController;

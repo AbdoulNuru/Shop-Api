@@ -1,7 +1,7 @@
-import products from '../db/seeds';
+
 
 class productController {
-    static createNewProduct(req, res) {
+    /*static createNewProduct(req, res) {
         const today = new Date();
         const prod = {
             id: products.length + 1,
@@ -99,7 +99,7 @@ class productController {
             success: false,
             message: 'Invalid product Id'
         });
-    }
+    }*/
 }
 
 export default productController;
