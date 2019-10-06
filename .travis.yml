@@ -5,7 +5,7 @@ services:
   - postgresql  
 before_script:
   - psql -c 'create database Teamwork_Testing;' -U postgres
-  - psql -c 'CREATE ROLE Nuru SUPERUSER LOGIN Teamwork_Testing;' -U postgres
+  - psql -c 'CREATE ROLE Nuru SUPERUSER LOGIN CREATEDB;' -U postgres
 cache: npm
 script: 
   - npm run test
