@@ -43,5 +43,44 @@ describe('Shop Api', ()=>{
           done();
         });
     });
+
+    it("should login a user", done => {
+      chai
+        .request(app)
+        .post("/api/v1/auth/signin")
+        .send({ email: "nuru@gmail.com", password: "nuru123" })
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.have.property("message", "Logged in successfully");
+          done();
+        });
+    });
+
+    it("should not login a user if he/she don't have an account", done => {
+      chai
+        .request(app)
+        .post("/api/v1/auth/signin")
+        .send({ email: "nurugmail.com", password: "nuru123" })
+        .end((err, res) => {
+          res.should.have.status(404);
+          res.body.should.have.property(
+            "error",
+            "It seems like you don't have an account"
+          );
+          done();
+        });
+    });
+
+    it("should not login a user if the email or password is incorrect", done => {
+      chai
+        .request(app)
+        .post("/api/v1/auth/signin")
+        .send({ email: "nuru@gmail.com", password: "nuru12" })
+        .end((err, res) => {
+          res.should.have.status(401);
+          res.body.should.have.property("error", "incorrect email or password");
+          done();
+        });
+    });
 });
 

@@ -24,4 +24,6 @@ routes.post(
   userController.userSignUp
 );
 
+routes.post("/api/v1/auth/signin", userController.userLogin);
+
 export default routes;

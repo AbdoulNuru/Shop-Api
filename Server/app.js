@@ -1,9 +1,9 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
-import productsRoutes from './routes/products';
-import ordersRoutes from './routes/orders';
-import usersRoutes from './routes/users';
+import productsRoutes from './routes/products.routes';
+import ordersRoutes from './routes/orders.routes';
+import usersRoutes from './routes/users.routes';
 import dotenv from 'dotenv';
 
 dotenv.config();

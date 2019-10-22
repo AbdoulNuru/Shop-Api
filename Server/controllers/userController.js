@@ -28,16 +28,30 @@ class userController{
             });      
     }
 
-    static userLogin(req, res){
+    static async userLogin(req, res){
         const email = req.body.email;
         const password = req.body.password;
-        const findByEmail = db.query(users.findByEmail, [email]);
+        const findByEmail = await db.query(users.findByEmail, [email]);
 
         if(findByEmail.rowCount > 0){
             const valid = help1.comparePassword(password, findByEmail.rows[0].password);
             if(valid){
-                
+                return res.status(200).json({
+                    status: 200,
+                    message: 'Logged in successfully',
+                    token: help1.getToken(email, findByEmail.rows[0].password)
+                });
+            }else{
+                return res.status(401).json({
+                  status: 401,
+                  error: "incorrect email or password",
+                });
             }
+        }else{
+            res.status(404).json({
+                status: 404,
+                error: 'It seems like you don\'t have an account'
+            });
         }
     }
 }

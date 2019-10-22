@@ -9,6 +9,6 @@ const createUser = ` insert into employee (
         address
     ) VALUES($1, $2, $3, $4, $5, $6, $7, $8) ON CONFLICT DO NOTHING returning *`;
 
-    
+const findByEmail = `select employeeid, password, email from employee where email=($1)`;
 
-export default {createUser};
+export default {createUser, findByEmail};
