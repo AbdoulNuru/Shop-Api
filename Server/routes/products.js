@@ -1,12 +1,6 @@
 import Router from 'express';
 import productController from '../controllers/productsController';
-import userController from '../controllers/userController';
-import validation from '../middleware/userValidation';
 import auth from '../middleware/auth';
-
-const { checkFirstName, checkLastName, fNameIsEmpty, 
-        checkEmail, checkGender, checkJobRole, 
-        checkDepart } = validation;
 
 const routes = Router();
 
@@ -18,10 +12,6 @@ routes.get('/', (req, res)=>{
 //routes.get('/api/v1/products', auth, productController.getAllProducts);
 
 ///routes.post('/api/v1/products', auth, productController.createNewProduct);
-
-routes.post('/api/v2/auth', checkFirstName, checkLastName, fNameIsEmpty,
-                            checkEmail, checkGender, checkDepart,
-                            userController.userSignUp);
 
 //routes.post('/api/v1/auth/login', userController.userLogin);                            
 

@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import productsRoutes from './routes/products';
 import ordersRoutes from './routes/orders';
+import usersRoutes from './routes/users';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -26,6 +27,7 @@ app.use((req, res, next)=>{
 
 app.use(productsRoutes);
 app.use(ordersRoutes);
+app.use(usersRoutes);
 
 app.use((req, res, next)=>{
     const error = new Error('Not found');

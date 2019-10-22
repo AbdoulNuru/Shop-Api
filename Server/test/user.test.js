@@ -16,11 +16,11 @@ const user = {
 };
 
 
-describe('Testing', ()=>{
+describe('Shop Api', ()=>{
     it('should create a user', (done)=>{
         chai
           .request(app)
-          .post("/api/v2/auth")
+          .post("/api/v1/auth/signup")
           .send(user)
           .end((err, res) => {
             res.should.have.status(201);
@@ -28,9 +28,20 @@ describe('Testing', ()=>{
               "message",
               "User created successfully"
             );
-            //res.body.student.should.have.property("name", "Seth");
             done();
           });
+    });
+
+    it("should not create a user if the email already exist", done => {
+      chai
+        .request(app)
+        .post("/api/v1/auth/signup")
+        .send(user)
+        .end((err, res) => {
+          res.should.have.status(409);
+          res.body.should.have.property("error", "User exist");
+          done();
+        });
     });
 });
 

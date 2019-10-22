@@ -24,7 +24,7 @@ class userController{
 
             res.status(409).json({
                 status: 409,
-                message: 'User exist'
+                error: 'User exist'
             });      
     }
 
