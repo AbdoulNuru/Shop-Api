@@ -28,32 +28,18 @@ class userController{
             });      
     }
 
-    /*static userLogin(req, res){
+    static userLogin(req, res){
         const email = req.body.email;
-        const pas = req.body.password;
-        const user = users.find(user => user.email === email);
+        const password = req.body.password;
+        const findByEmail = db.query(users.findByEmail, [email]);
 
-        if(!user){
-            return res.status(400).json({
-                status: 400,
-                message: 'Email do not exist in our database'
-            });
+        if(findByEmail.rowCount > 0){
+            const valid = help1.comparePassword(password, findByEmail.rows[0].password);
+            if(valid){
+                
+            }
         }
-        const pass = help1.comparePassword(pas, user.password);
-
-        if(pass){
-            res.status(200).json({
-                status: 200,
-                message: 'Successfully logged in',
-                token: help1.getToken(user.email, user.userId)
-            });
-        }else{
-            res.status(400).json({
-                status: 400,
-                message: 'wrong password'
-            });
-        }
-    }*/
+    }
 }
 
 export default userController;

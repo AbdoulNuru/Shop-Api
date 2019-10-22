@@ -8,6 +8,7 @@
     "build": "babel ./Server -d build",
     "dev": "nodemon --exec babel-node Server/server.js",
     "test": "cross-env NODE_ENV=isTesting npm run deleteTables && cross-env NODE_ENV=isTesting npm run createTables && cross-env NODE_ENV=isTesting nyc --require @babel/polyfill --require @babel/register mocha ./Server/test/*.js --exit",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "createTables": "node --require @babel/polyfill --require @babel/register Server/db/createTables.js",
     "deleteTables": "node --require @babel/polyfill --require @babel/register Server/db/deleteTables.js"
   },
