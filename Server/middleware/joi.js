@@ -7,7 +7,6 @@ const validateUser = (user)=>{
         email: Joi.string().email().required(),
         password: Joi.string().required(),
         gender: Joi.string().required(),
-        jobRole: Joi.string().required(),
         department: Joi.string().required(),
         address: Joi.string().required()
     })

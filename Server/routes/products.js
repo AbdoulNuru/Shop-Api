@@ -20,7 +20,7 @@ routes.get('/', (req, res)=>{
 ///routes.post('/api/v1/products', auth, productController.createNewProduct);
 
 routes.post('/api/v2/auth', checkFirstName, checkLastName, fNameIsEmpty,
-                            checkEmail, checkGender, checkJobRole, checkDepart,
+                            checkEmail, checkGender, checkDepart,
                             userController.userSignUp);
 
 //routes.post('/api/v1/auth/login', userController.userLogin);                            
