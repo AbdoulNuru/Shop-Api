@@ -2,7 +2,6 @@
 import help1 from '../helper/help1';
 import validation from '../middleware/joi';
 import db from '../../config/config';
-import uuid from 'uuid/v1';
 import users from '../db/user';
 class userController{
     static async userSignUp(req, res){
@@ -11,7 +10,7 @@ class userController{
         } = req.body;
         const password = help1.hashPassword(req.body.password);
 
-        const add = await db.query(users.createUser, [uuid(), firstname, lastname,email, password, gender, department, address]);     
+        const add = await db.query(users.createUser, [firstname, lastname,email, password, gender, department, address]);     
         if(add.rowCount === 1){
                 return res.status(201).json({ 
                   status: 201,

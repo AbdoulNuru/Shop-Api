@@ -34,8 +34,8 @@ dotenv.config();
 }*/
 
 const userTable = `
-    CREATE TABLE IF NOT EXISTS employee (
-                employeeId UUID PRIMARY KEY,
+    CREATE TABLE IF NOT EXISTS users (
+                userId SERIAL PRIMARY KEY,
                 firstName text,
                 lastName text,
                 email text UNIQUE,
@@ -50,8 +50,8 @@ const articleTable = `
                 title text,
                 article text,
                 createdOn date,
-                createdBy UUID,
-                foreign key(createdBy) REFERENCES employee ON DELETE CASCADE)`;
+                createdBy SERIAL,
+                foreign key(createdBy) REFERENCES users ON DELETE CASCADE)`;
 
 const deleteTable = `DROP TABLE IF EXISTS employee, articles CASCADE;`;                
 
