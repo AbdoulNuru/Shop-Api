@@ -1,15 +1,10 @@
 import tab from '../db/db';
 import conn from '../../config/config';
 
-// export default {
-//   createUserTable,
-//   createArticleTable
-// };
-
 const createTables = async () =>{
-    const createUserTable = tab.userTable;
-    const createArticleTable = tab.articleTable;
-    const tables = `${createUserTable}; ${createArticleTable}`;
+    const createUserTable = tab.users;
+    const createProductTable = tab.products;
+    const tables = `${createUserTable}; ${createProductTable}`;
 
     await conn.query(tables);
 };
